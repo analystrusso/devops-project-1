@@ -13,4 +13,19 @@ services:
     - ./website:/usr/local/apache2/htdocs
 ```
 
-This sets up an Apache web server to serve files from the /website directory on port 80. This project will grow over time to demonstrate increasing subject mastery.
+This sets up an Apache web server to serve files from the /website directory on port 80, as follows:
+
+```
+ <!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+</html> 
+```
+
+This project will grow over time to demonstrate increasing subject mastery.
+
