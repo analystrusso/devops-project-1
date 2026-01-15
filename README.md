@@ -104,7 +104,7 @@ metadata:
     io.kompose.service: apache
   name: apache-cm0
 ```
-Running <minikube service apache> launched the served website on its correct IP and port.
+Running "minikube service apache" launched the served website on its correct IP and port.
 
 This project will grow over time to demonstrate increasing subject mastery.
 
