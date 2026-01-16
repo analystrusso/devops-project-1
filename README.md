@@ -117,5 +117,7 @@ Next, I started to implement monitoring and visualization using Prometheus and G
 
 TODO: integrate running apache pod with Prometheus and Grafana.
 
+Last entry for the night: I got Prometheus and Grafana talking to each other and, while I can see things in the monitoring namespace I set up, my apache endpoints are in default, and so far I don't think I can see them. Permissions issue, I bet. TBC.
+
 This project will grow over time to demonstrate increasing subject mastery.
 
