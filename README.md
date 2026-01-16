@@ -106,5 +106,16 @@ metadata:
 ```
 Running "minikube service apache" launched the served website on its correct IP and port.
 
+
+Next, I started to implement monitoring and visualization using Prometheus and Grafana. Here's how:
+1. I installed Helm using official documentation.
+2. Added the Prometheus Community Helm repo.
+3. Created a dedicated namespace for monitoring components called 'monitoring'.
+4. Installed the kube-prometheus-stack chart into the monitoring namespace using default values.
+5. Verified installation by checking status of pods deployed in the namespace.
+6. Accessed the dashboards with "kubectl port-forward" so Prometheus was exposed on 9090 and Grafana on 3000. Normally, these services are only accessible from within the cluster since they use ClusterIP.
+
+TODO: integrate running apache pod with Prometheus and Grafana.
+
 This project will grow over time to demonstrate increasing subject mastery.
 
