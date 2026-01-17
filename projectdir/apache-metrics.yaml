@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache
+  namespace: default
+  labels:
+    app: apache
+spec:
+  ports:
+  - port: 80
+    name: http
+    targetPort: 80
+  - port: 9117
+    name: metrics
+    targetPort: 9117
+  selector:
+    app: apache
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: apache
+  namespace: default
+  labels:
+    app: apache
+    release: monitoring-kube-prometheus
+spec:
+  selector:
+    matchLabels:
+      app: apache
+  endpoints:
+  - port: metrics
+    interval: 30s
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prometheus-k8s
+  namespace: default
+rules:
+- apiGroups: [""]
+  resources:
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: prometheus-k8s
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: prometheus-k8s
+subjects:
+- kind: ServiceAccount
+  name: prometheus-k8s
+  namespace: monitoring
