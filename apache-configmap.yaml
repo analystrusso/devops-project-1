@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apache-cm0
+  namespace: default
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>My Apache Server</title>
+    </head>
+    <body>
+        <h1>Welcome to my website!</h1>
+        <p>This is served by Apache in Kubernetes.</p>
+    </body>
+    </html>
