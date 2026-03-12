@@ -9,9 +9,15 @@ on:
 
 jobs:
   update-configmap:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
+      - name: Debug network
+        run: |
+          whoami
+        curl -k https://192.168.49.2.8443/healthz
+        kubectl cluster-info
+
       - name: Checkout code
         uses: actions/checkout@v4
       
