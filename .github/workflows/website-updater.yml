@@ -15,7 +15,7 @@ jobs:
       - name: Debug network
         run: |
           whoami
-          curl -k https://192.168.49.2.8443/healthz
+          curl -k https://192.168.49.2:8443/healthz
           kubectl cluster-info
 
       - name: Checkout code
@@ -47,12 +47,3 @@ jobs:
         run: |
           kubectl rollout restart deployment apache -n default
           kubectl rollout status deployment apache -n default --timeout=2m
-      
-      - name: Commit generated ConfigMap (optional)
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add apache-configmap.yaml
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update ConfigMap from website changes" && git push)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
